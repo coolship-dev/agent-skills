@@ -1,0 +1,63 @@
+# Example for .github/workflows/deploy.yml. Review and customize before use.
+# Configure GitHub environment `production` with reviewer approvals and
+# secret variables COOLSHIP_URL and COOLSHIP_TOKEN.
+name: Deploy via Coolship
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: coolship-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout repo (for coolship.toml)
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.26'
+      - name: Install pinned Coolship
+        run: |
+          go install github.com/joaomnuno/coolship@v0.4.0
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+      - name: Inspect target
+        env:
+          COOLSHIP_URL: ${{ secrets.COOLSHIP_URL }}
+          COOLSHIP_TOKEN: ${{ secrets.COOLSHIP_TOKEN }}
+        run: |
+          coolship --version
+          coolship config show
+          echo "Workflow checkout SHA: ${GITHUB_SHA}"
+      # Required application-owned hooks: this template fails before deployment
+      # until checks and source verification are implemented.
+      - name: Check application and configured source
+        env:
+          COOLSHIP_URL: ${{ secrets.COOLSHIP_URL }}
+          COOLSHIP_TOKEN: ${{ secrets.COOLSHIP_TOKEN }}
+        run: |
+          test -x scripts/check-deployment.sh
+          test -x scripts/verify-coolify-source.sh
+          test -x scripts/verify-release.sh
+          scripts/check-deployment.sh
+          scripts/verify-coolify-source.sh "$GITHUB_SHA"
+      - name: Deploy and wait
+        env:
+          COOLSHIP_URL: ${{ secrets.COOLSHIP_URL }}
+          COOLSHIP_TOKEN: ${{ secrets.COOLSHIP_TOKEN }}
+          CI: 'true'
+        run: |
+          coolship deploy --timeout 20m
+          coolship status
+          coolship deployments -n 3
+      - name: Verify health and deployed revision
+        run: scripts/verify-release.sh "$GITHUB_SHA"

@@ -1,0 +1,16 @@
+# EXAMPLE ONLY. Link targets explicitly with `coolship link --target NAME`.
+version = 1
+
+[apps.web]
+context = "YOUR_SAVED_CONTEXT"
+project = "YOUR_COOLIFY_PROJECT"
+environment = "production"
+application = "frontend"
+root = "apps/web"
+
+[apps.api]
+context = "YOUR_SAVED_CONTEXT"
+project = "YOUR_COOLIFY_PROJECT"
+environment = "production"
+application = "backend"
+root = "apps/api"

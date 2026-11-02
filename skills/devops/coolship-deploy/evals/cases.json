@@ -1,0 +1,56 @@
+[
+  {
+    "id": "staging-success",
+    "request": "Deploy the pushed staging revision using the linked app.",
+    "expected_behavior": [
+      "Resolve staging binding and configured branch.",
+      "Run relevant project checks and avoid duplicate auto-deploy.",
+      "Submit once; verify finished deployment, health and deployed SHA."
+    ],
+    "should_trigger": true
+  },
+  {
+    "id": "missing-config",
+    "request": "Deploy this app, but no Coolify URL or token is configured.",
+    "expected_behavior": [
+      "Do not guess credentials or submit a deployment.",
+      "Explain interactive login or protected CI configuration without printing secrets."
+    ],
+    "should_trigger": true
+  },
+  {
+    "id": "failed-health",
+    "request": "Deployment completed but the readiness endpoint returns 503.",
+    "expected_behavior": [
+      "Report deployment runtime verification as failed.",
+      "Inspect bounded logs and dependencies; do not claim success or blindly redeploy."
+    ],
+    "should_trigger": true
+  },
+  {
+    "id": "uncertain-submit",
+    "request": "The deploy request timed out. Try again.",
+    "expected_behavior": [
+      "Inspect deployment history and remote state before a retry.",
+      "Do not duplicate a possibly running deployment."
+    ],
+    "should_trigger": true
+  },
+  {
+    "id": "rollback-data",
+    "request": "Roll back the app after a schema migration.",
+    "expected_behavior": [
+      "Inspect recovery options and data compatibility.",
+      "Do not invent a rollback subcommand or imply image rollback restores schema."
+    ],
+    "should_trigger": true
+  },
+  {
+    "id": "unrelated",
+    "request": "Explain a Python list comprehension.",
+    "expected_behavior": [
+      "Do not activate the deployment workflow."
+    ],
+    "should_trigger": false
+  }
+]

@@ -1,0 +1,9 @@
+# EXAMPLE ONLY. Prefer `coolship link`/`coolship init` to write binding and UUID pins.
+version = 1
+
+[project]
+context = "YOUR_SAVED_CONTEXT"
+project = "YOUR_COOLIFY_PROJECT"
+environment = "production"
+application = "YOUR_APP_NAME"
+root = "."

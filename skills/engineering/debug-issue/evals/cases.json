@@ -1,0 +1,11 @@
+[
+  {
+    "id": "core-behavior",
+    "request": "Fix an intermittent API failure with no reproduction yet.",
+    "expected_behavior": [
+      "Gather evidence and isolate a reproducible case before claiming a root cause.",
+      "Verify the fix or explicitly state the missing check."
+    ],
+    "should_trigger": true
+  }
+]

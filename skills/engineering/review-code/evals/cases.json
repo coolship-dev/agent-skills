@@ -1,0 +1,11 @@
+[
+  {
+    "id": "core-behavior",
+    "request": "Review a patch that removes an authorization check.",
+    "expected_behavior": [
+      "Trace affected callers and report the concrete access regression with file/line evidence.",
+      "Do not modify the patch without authorization."
+    ],
+    "should_trigger": true
+  }
+]

@@ -1,0 +1,13 @@
+# Illustration only. Project must provide Dockerfile, correct DATABASE_URL,
+# health checks, migration plan and production backup/restore policy.
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    expose:
+      - "8000"
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?configure_in_Coolify}
+    # Add domain for service `web` through Coolify / coolship.
+    # Avoid publishing public host ports; use Coolify's proxy.
+# For databases, prefer a separately managed/backup-enabled service.
