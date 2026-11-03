@@ -29,12 +29,26 @@ Install only the capabilities your project needs. For manual installation, copy 
 | [unslop](skills/engineering/unslop/SKILL.md) | Remove unnecessary complexity and generic filler from code or prose |
 | [react-best-practices](skills/web/react-best-practices/SKILL.md) | Improve React application behavior and performance |
 | [web-ui-review](skills/web/web-ui-review/SKILL.md) | Review web interfaces for usability, accessibility and responsive behavior |
+| [frontend-architecture](skills/web/frontend-architecture/SKILL.md) | Design maintainable React/TypeScript architecture and reuse established libraries |
+| [frontend-review](skills/web/frontend-review/SKILL.md) | Audit frontend architecture, duplicated UI and state ownership |
 | [docker-debug](skills/devops/docker-debug/SKILL.md) | Diagnose Docker and Docker Compose failures |
 | [proxmox-ops](skills/devops/proxmox-ops/SKILL.md) | Diagnose and maintain Proxmox virtual machines and containers |
 | [cloudflare-routing](skills/devops/cloudflare-routing/SKILL.md) | Configure and diagnose Cloudflare DNS, proxy and Tunnel routing |
 | [python-project-setup](skills/python/python-project-setup/SKILL.md) | Set up or repair Python project tooling |
 | [opencv-development](skills/python/opencv-development/SKILL.md) | Develop and debug OpenCV image or video processing in Python |
 | [platformio-workflow](skills/embedded/platformio-workflow/SKILL.md) | Build, test and troubleshoot PlatformIO firmware projects |
+
+## Frontend skill collection
+
+The [curated frontend collection](docs/frontend-skills.md) combines portable Coolship architecture skills with official upstream Vercel, Anthropic and Microsoft guidance. External skill content is installed from its maintainers, not vendored.
+
+Run the optional [installer](scripts/install-frontend.sh) from a consuming application (using a locally cloned catalog):
+
+```sh
+sh /path/to/agent-skills/scripts/install-frontend.sh codex claude-code
+```
+
+The Playwright CLI browser skill is optional; installation and runtime requirements are documented in the guide.
 
 ## Maintain and validate
 
