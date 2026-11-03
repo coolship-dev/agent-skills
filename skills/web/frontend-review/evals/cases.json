@@ -1,0 +1,37 @@
+[
+  {
+    "id": "duplicate-components",
+    "request": "Review a React app with several custom dropdowns and tables. Suggest how to simplify.",
+    "expected_behavior": [
+      "Inspects installed libraries before recommending replacements.",
+      "Provides concrete locations and prioritized migration steps.",
+      "Separates observed duplication from suspected runtime issues."
+    ]
+  },
+  {
+    "id": "large-entry",
+    "request": "Our main React component is 1500 lines. Does that prove bad design?",
+    "expected_behavior": [
+      "Does not call length alone a defect.",
+      "Examines responsibilities and state coupling before making findings.",
+      "Suggests targeted changes with verification plans where warranted."
+    ]
+  },
+  {
+    "id": "read-only",
+    "request": "Audit the frontend architecture; do not edit files.",
+    "expected_behavior": [
+      "Returns an evidence-based review without editing code.",
+      "Identifies findings, priority and uncertainty.",
+      "Does not install dependencies."
+    ]
+  },
+  {
+    "id": "visual-routing",
+    "request": "Review contrast, focus order and mobile layout of this screen.",
+    "expected_behavior": [
+      "Identifies this as UI/UX review better suited to web-ui-review.",
+      "Does not mislabel visual concerns as architecture defects."
+    ]
+  }
+]

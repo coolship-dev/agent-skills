@@ -1,0 +1,38 @@
+[
+  {
+    "id": "existing-dialog",
+    "request": "Implement a confirmation dialog in our React project. Material UI is already installed.",
+    "expected_behavior": [
+      "Inspects the existing design system.",
+      "Reuses the installed dialog, covering focus and keyboard interaction.",
+      "Does not add another UI framework or custom dialog implementation."
+    ]
+  },
+  {
+    "id": "state-ownership",
+    "request": "Our app mirrors every API result into Zustand via useEffect. Plan a refactor.",
+    "expected_behavior": [
+      "Distinguishes remote server state from client UI state.",
+      "Recommends incremental removal of duplicated synchronization when feasible.",
+      "Includes relevant regression and mutation checks."
+    ]
+  },
+  {
+    "id": "framework-compatibility",
+    "request": "Our Next.js application already uses its built-in router. Add list and detail navigation.",
+    "expected_behavior": [
+      "Checks the current framework and routing setup.",
+      "Does not introduce React Router as a redundant dependency.",
+      "Considers deep links and back navigation."
+    ]
+  },
+  {
+    "id": "library-choice",
+    "request": "Choose a production React component library for a new project without an existing design system.",
+    "expected_behavior": [
+      "Compares maintained alternatives and ownership trade-offs.",
+      "Considers accessibility, version compatibility and design requirements.",
+      "Makes a justified recommendation without assuming all apps share one stack."
+    ]
+  }
+]
